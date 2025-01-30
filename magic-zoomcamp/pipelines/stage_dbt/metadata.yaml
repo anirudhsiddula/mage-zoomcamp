@@ -3,12 +3,58 @@ blocks:
   color: null
   configuration:
     dbt_project_name: dbt/magedbt
+    file_path: dbt/magedbt/models/core/dim_zones.sql
+    file_source:
+      path: dbt/magedbt/models/core/dim_zones.sql
+      project_path: dbt/magedbt
+  downstream_blocks:
+  - dbt/magedbt/models/core/fact_trips
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: sql
+  name: dbt/magedbt/models/core/dim_zones
+  retry_config: null
+  status: executed
+  timeout: null
+  type: dbt
+  upstream_blocks: []
+  uuid: dbt/magedbt/models/core/dim_zones
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    dbt_project_name: dbt/magedbt
+    file_path: dbt/magedbt/models/core/fact_trips.sql
+    file_source:
+      path: dbt/magedbt/models/core/fact_trips.sql
+      project_path: dbt/magedbt
+    limit: 1000
+  downstream_blocks:
+  - dbt/magedbt/models/core/dm_monthly_zone_revenue
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: sql
+  name: dbt/magedbt/models/core/fact_trips
+  retry_config: null
+  status: executed
+  timeout: null
+  type: dbt
+  upstream_blocks:
+  - dbt/magedbt/models/staging/stg_yellow_tripdata
+  - dbt/magedbt/models/staging/stg_green_tripdata
+  - dbt/magedbt/models/core/dim_zones
+  uuid: dbt/magedbt/models/core/fact_trips
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    dbt_project_name: dbt/magedbt
     file_path: dbt/magedbt/models/staging/stg_green_tripdata.sql
     file_source:
       path: dbt/magedbt/models/staging/stg_green_tripdata.sql
       project_path: dbt/magedbt
-    limit: 1000
-  downstream_blocks: []
+  downstream_blocks:
+  - dbt/magedbt/models/core/fact_trips
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -20,6 +66,48 @@ blocks:
   type: dbt
   upstream_blocks: []
   uuid: dbt/magedbt/models/staging/stg_green_tripdata
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    dbt_project_name: dbt/magedbt
+    file_path: dbt/magedbt/models/staging/stg_yellow_tripdata.sql
+    file_source:
+      path: dbt/magedbt/models/staging/stg_yellow_tripdata.sql
+      project_path: dbt/magedbt
+  downstream_blocks:
+  - dbt/magedbt/models/core/fact_trips
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: sql
+  name: dbt/magedbt/models/staging/stg_yellow_tripdata
+  retry_config: null
+  status: executed
+  timeout: null
+  type: dbt
+  upstream_blocks: []
+  uuid: dbt/magedbt/models/staging/stg_yellow_tripdata
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    dbt_project_name: dbt/magedbt
+    file_path: dbt/magedbt/models/core/dm_monthly_zone_revenue.sql
+    file_source:
+      path: dbt/magedbt/models/core/dm_monthly_zone_revenue.sql
+      project_path: dbt/magedbt
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: sql
+  name: dm_monthly_zone_revenue
+  retry_config: null
+  status: executed
+  timeout: null
+  type: dbt
+  upstream_blocks:
+  - dbt/magedbt/models/core/fact_trips
+  uuid: dbt/magedbt/models/core/dm_monthly_zone_revenue
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
