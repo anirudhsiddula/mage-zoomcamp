@@ -1,0 +1,17 @@
+base:
+  outputs:
+    dev:
+      type: duckdb
+  target: dev
+magedbt:
+  outputs:
+    dev:
+      dbname: taxi
+      host: postgres
+      pass: postgres
+      port: 5432
+      schema: dbo
+      threads: 1
+      type: postgres
+      user: postgres
+  target: dev
